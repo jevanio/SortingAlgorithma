@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import static arrays.Sort.bubbleSort;
 import static arrays.Sort.insertionSort;
 import static arrays.Sort.mergeSort;
+import static arrays.Sort.quickSort;
 import static arrays.Sort.selectionSort;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -54,7 +55,36 @@ class SortTest {
         return Stream.of(
                 Arguments.of(new int[]{64, 25, 12, 22, 11}, new int[]{11, 12, 22, 25, 64}),
                 Arguments.of(new int[]{4, 3, 2, 10, 12, 1, 5, 6}, new int[]{1, 2, 3, 4, 5, 6, 10, 12}),
-                Arguments.of(new int[]{38, 27, 43, 3, 9, 82, 10}, new int[]{3, 9, 10, 27, 38, 43, 82})
+                Arguments.of(new int[]{38, 27, 43, 3, 9, 82, 10}, new int[]{3, 9, 10, 27, 38, 43, 82}),
+                Arguments.of(new int[]{10, 80, 30, 90, 40, 50, 70}, new int[]{10, 30, 40, 50, 70, 80, 90}),
+                Arguments.of(new int[]{10, 80, 30, 90, 40, 70, 70}, new int[]{10, 30, 40, 70, 70, 80, 90})
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource("sortProvider")
+    void givenArray_whenQuickSortFirst_thenExpected(int[] array, int[] expected) throws Exception {
+        quickSort(array, "first");
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], array[i]);
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("sortProvider")
+    void givenArray_whenQuickSortLast_thenExpected(int[] array, int[] expected) throws Exception {
+        quickSort(array, "last");
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], array[i]);
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("sortProvider")
+    void givenArray_whenQuickSortMiddle_thenExpected(int[] array, int[] expected) throws Exception {
+        quickSort(array, "middle");
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], array[i]);
+        }
     }
 }
