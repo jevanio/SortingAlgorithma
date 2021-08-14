@@ -1,11 +1,13 @@
 package arrays;
 
 public class Sort {
+    private final int[] array;
 
-    private Sort() {
+    public Sort(int[] array) {
+        this.array = array;
     }
 
-    public static void selectionSort(int[] array) {
+    public void selectionSort() {
         for (int i = 0; i < array.length; i++) {
             int minPosition = getMin(array, i);
             int tmp = array[i];
@@ -26,7 +28,7 @@ public class Sort {
         return minPosition;
     }
 
-    public static void bubbleSort(int[] array) {
+    public void bubbleSort() {
         boolean isSort;
         do {
             isSort = true;
@@ -41,7 +43,7 @@ public class Sort {
         } while (!isSort);
     }
 
-    public static void insertionSort(int[] array) {
+    public void insertionSort() {
         for (int i = 1; i < array.length; i++) {
             sortBack(array, i);
         }
@@ -57,7 +59,7 @@ public class Sort {
         }
     }
 
-    public static void mergeSort(int[] array) {
+    public void mergeSort() {
         int l = 0;
         int r = array.length;
         mergeSort(array, l, r);
@@ -95,7 +97,7 @@ public class Sort {
         return pos;
     }
 
-    public static void quickSort(int[] array, String pivotType) throws Exception {
+    public void quickSort(String pivotType) throws Exception {
 
         quickSort(array, 0, array.length - 1, pivotType);
     }
